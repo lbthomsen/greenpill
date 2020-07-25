@@ -37,11 +37,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
  16 .debug_macro  000123b1  00000000  00000000  000243a0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_line   000038f3  00000000  00000000  00036751  2**0
+ 17 .debug_line   000038f5  00000000  00000000  00036751  2**0
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_str    00063c26  00000000  00000000  0003a044  2**0
+ 18 .debug_str    00063c26  00000000  00000000  0003a046  2**0
                   CONTENTS, READONLY, DEBUGGING
- 19 .comment      0000007b  00000000  00000000  0009dc6a  2**0
+ 19 .comment      0000007b  00000000  00000000  0009dc6c  2**0
                   CONTENTS, READONLY
  20 .debug_frame  00000d44  00000000  00000000  0009dce8  2**2
                   CONTENTS, READONLY, DEBUGGING
@@ -112,15 +112,15 @@ int main(void)
   uint32_t then = 0;
  800015e:	2300      	movs	r3, #0
  8000160:	607b      	str	r3, [r7, #4]
-
-  /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+
+	// Check the current tick
 	uint32_t now = HAL_GetTick();
  8000162:	f000 f9cf 	bl	8000504 <HAL_GetTick>
  8000166:	6038      	str	r0, [r7, #0]
-	if (now % 500 == 0 && now > then) {
+	if (now % 500 == 0 && now > then) { // Only if the current tick is 500 ms after the last
  8000168:	683a      	ldr	r2, [r7, #0]
  800016a:	4b0b      	ldr	r3, [pc, #44]	; (8000198 <main+0x4c>)
  800016c:	fba3 1302 	umull	r1, r3, r3, r2
@@ -135,12 +135,12 @@ int main(void)
  8000184:	429a      	cmp	r2, r3
  8000186:	d9ec      	bls.n	8000162 <main+0x16>
 
-		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13); // Toggle LED
  8000188:	f44f 5100 	mov.w	r1, #8192	; 0x2000
  800018c:	4803      	ldr	r0, [pc, #12]	; (800019c <main+0x50>)
  800018e:	f000 fc19 	bl	80009c4 <HAL_GPIO_TogglePin>
 
-		then = now;
+		then = now; // Reset then = now
  8000192:	683b      	ldr	r3, [r7, #0]
  8000194:	607b      	str	r3, [r7, #4]
   {

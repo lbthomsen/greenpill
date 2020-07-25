@@ -2276,16 +2276,16 @@ OUTPUT(blink2.elf elf32-littlearm)
  .debug_macro   0x000000000001203e      0x1e6 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
  .debug_macro   0x0000000000012224      0x18d Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
 
-.debug_line     0x0000000000000000     0x38f3
- .debug_line    0x0000000000000000      0x61b Core/Src/main.o
- .debug_line    0x000000000000061b      0x5ca Core/Src/stm32f1xx_hal_msp.o
- .debug_line    0x0000000000000be5      0x66d Core/Src/stm32f1xx_it.o
- .debug_line    0x0000000000001252      0x5fa Core/Src/system_stm32f1xx.o
- .debug_line    0x000000000000184c       0x84 Core/Startup/startup_stm32f103c8tx.o
- .debug_line    0x00000000000018d0      0x7a2 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
- .debug_line    0x0000000000002072      0x87b Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
- .debug_line    0x00000000000028ed      0x7a2 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
- .debug_line    0x000000000000308f      0x864 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
+.debug_line     0x0000000000000000     0x38f5
+ .debug_line    0x0000000000000000      0x61d Core/Src/main.o
+ .debug_line    0x000000000000061d      0x5ca Core/Src/stm32f1xx_hal_msp.o
+ .debug_line    0x0000000000000be7      0x66d Core/Src/stm32f1xx_it.o
+ .debug_line    0x0000000000001254      0x5fa Core/Src/system_stm32f1xx.o
+ .debug_line    0x000000000000184e       0x84 Core/Startup/startup_stm32f103c8tx.o
+ .debug_line    0x00000000000018d2      0x7a2 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal.o
+ .debug_line    0x0000000000002074      0x87b Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_cortex.o
+ .debug_line    0x00000000000028ef      0x7a2 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_gpio.o
+ .debug_line    0x0000000000003091      0x864 Drivers/STM32F1xx_HAL_Driver/Src/stm32f1xx_hal_rcc.o
 
 .debug_str      0x0000000000000000    0x63c26
  .debug_str     0x0000000000000000    0x62b9f Core/Src/main.o
