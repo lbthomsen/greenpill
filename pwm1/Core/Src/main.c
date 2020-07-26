@@ -17,13 +17,14 @@
  ******************************************************************************
  */
 /* USER CODE END Header */
-
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "usb_device.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <math.h>
+#include <arm_math.h>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -36,6 +37,9 @@
 #define L_R 0
 #define L_G 1
 #define L_B 2
+#define L_R_CCR TIM2->CCR1
+#define L_G_CCR TIM2->CCR2
+#define L_B_CCR TIM2->CCR3
 #define M_PI2 2 * M_PI
 /* USER CODE END PD */
 
@@ -48,10 +52,12 @@
 TIM_HandleTypeDef htim2;
 TIM_HandleTypeDef htim4;
 
+/* USER CODE BEGIN PV */
+
+void *led_ccr[3];
+
 float velocity[3] = { 0, 0, 0 };
 float angle[3] = { 0, 0, 0 };
-
-/* USER CODE BEGIN PV */
 
 /* USER CODE END PV */
 
@@ -68,25 +74,24 @@ static void MX_TIM4_Init(void);
 /* USER CODE BEGIN 0 */
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
 	if (htim->Instance == TIM4) {
 		for (uint8_t i = 0; i < 3; ++i) {
-			uint16_t value = (uint16_t) (500 + cos(angle[i]) * 500);
-			switch (i) {
-			case 0:
-				TIM2->CCR1 = value;
-				break;
-			case 1:
-				TIM2->CCR2 = value;
-				break;
-			case 2:
-				TIM2->CCR3 = value;
-				break;
-			}
+			*(uint16_t*) led_ccr[i] = (uint16_t) (500 + arm_cos_f32(angle[i]) * 500);
+
 			angle[i] += velocity[i];
 			if (angle[i] > M_PI2)
 				angle[i] -= M_PI2;
 		}
 	}
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
+}
+
+int _write(int file, char *ptr, int len) {
+	/* Implement your write code here, this is used by puts and printf for example */
+	for (int i = 0; i < len; i++)
+		ITM_SendChar((*ptr++));
+	return len;
 }
 
 void setFreq(uint8_t led, float freq) {
@@ -128,7 +133,13 @@ int main(void) {
 	MX_GPIO_Init();
 	MX_TIM2_Init();
 	MX_TIM4_Init();
+	MX_USB_DEVICE_Init();
 	/* USER CODE BEGIN 2 */
+
+	// Store addresses for CCM registers
+	led_ccr[0] = (void*) &TIM2->CCR1;
+	led_ccr[1] = (void*) &TIM2->CCR2;
+	led_ccr[2] = (void*) &TIM2->CCR3;
 
 	// Start timer
 	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
@@ -144,10 +155,19 @@ int main(void) {
 	/* USER CODE BEGIN WHILE */
 
 	uint8_t show = 0;
-	uint32_t then = 10;
+	uint32_t lastSec = 10;
+	uint32_t last10Sec = 10;
 	while (1) {
 		uint32_t now = HAL_GetTick();
-		if (now % 10000 == 0 && now != then) { // every 10 secs
+
+		if (now % 1000 == 0 && now != lastSec) {
+
+			printf("tick - show = %d\n", show);
+
+			lastSec = now;
+		}
+
+		if (now % 10000 == 0 && now != last10Sec) { // every 10 secs
 
 			switch (show) {
 			case 0:
@@ -176,7 +196,7 @@ int main(void) {
 			}
 
 			show++;
-			then = now;
+			last10Sec = now;
 		}
 		/* USER CODE END WHILE */
 
@@ -192,8 +212,10 @@ int main(void) {
 void SystemClock_Config(void) {
 	RCC_OscInitTypeDef RCC_OscInitStruct = { 0 };
 	RCC_ClkInitTypeDef RCC_ClkInitStruct = { 0 };
+	RCC_PeriphCLKInitTypeDef PeriphClkInit = { 0 };
 
-	/** Initializes the CPU, AHB and APB busses clocks
+	/** Initializes the RCC Oscillators according to the specified parameters
+	 * in the RCC_OscInitTypeDef structure.
 	 */
 	RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
 	RCC_OscInitStruct.HSEState = RCC_HSE_ON;
@@ -205,7 +227,7 @@ void SystemClock_Config(void) {
 	if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK) {
 		Error_Handler();
 	}
-	/** Initializes the CPU, AHB and APB busses clocks
+	/** Initializes the CPU, AHB and APB buses clocks
 	 */
 	RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK | RCC_CLOCKTYPE_SYSCLK
 			| RCC_CLOCKTYPE_PCLK1 | RCC_CLOCKTYPE_PCLK2;
@@ -215,6 +237,11 @@ void SystemClock_Config(void) {
 	RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
 	if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK) {
+		Error_Handler();
+	}
+	PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USB;
+	PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_PLL_DIV1_5;
+	if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK) {
 		Error_Handler();
 	}
 }
@@ -338,10 +365,10 @@ static void MX_GPIO_Init(void) {
 	__HAL_RCC_GPIOB_CLK_ENABLE();
 
 	/*Configure GPIO pin Output Level */
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_3 | GPIO_PIN_4, GPIO_PIN_RESET);
 
-	/*Configure GPIO pin : PA3 */
-	GPIO_InitStruct.Pin = GPIO_PIN_3;
+	/*Configure GPIO pins : PA3 PA4 */
+	GPIO_InitStruct.Pin = GPIO_PIN_3 | GPIO_PIN_4;
 	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
 	GPIO_InitStruct.Pull = GPIO_NOPULL;
 	GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
@@ -373,7 +400,7 @@ void Error_Handler(void) {
   * @retval None
   */
 void assert_failed(uint8_t *file, uint32_t line)
-{ 
+{
   /* USER CODE BEGIN 6 */
   /* User can add his own implementation to report the file name and line number,
      tex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
