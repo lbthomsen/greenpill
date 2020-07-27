@@ -182,21 +182,23 @@ int main(void)
 			lastSec = now;
 		}
 
-		if (now % 10000 == 0 && now != last10Sec) { // every 10 secs
+		if (now % 20000 == 0 && now != last10Sec) { // every 10 secs
 
 			resetAll();
+
 			switch (show) {
 			case 0:
 				setFreq(L_R, 0.1);
 				break;
 			case 1:
-				setFreq(L_R, 0.5);
+				setFreq(L_G, 0.1);
 				break;
 			case 2:
-				setFreq(L_R, 1);
+				setFreq(L_B, 0.1);
 				break;
 			case 3:
-				setFreq(L_R, 5);
+				setFreq(L_G, 0.1);
+				setFreq(L_B, 0.11);
 				break;
 			case 4:
 				setFreq(L_R, 0.05);
