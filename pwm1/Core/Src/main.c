@@ -76,13 +76,18 @@ static void MX_TIM4_Init(void);
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
 	if (htim->Instance == TIM4) {
+
+		// Calculate for all 3 leds
 		for (uint8_t i = 0; i < 3; ++i) {
-			*(uint16_t*) led_ccr[i] = (uint16_t) (500 + arm_cos_f32(angle[i]) * 500);
+
+			*(uint16_t*) led_ccr[i] = (uint16_t) (500 + arm_cos_f32(angle[i]) * 500); // Will range from 0 - 1000
 
 			angle[i] += velocity[i];
-			if (angle[i] > M_PI2)
+			if (angle[i] > M_PI2) // Just avoid dealing with large angles
 				angle[i] -= M_PI2;
+
 		}
+
 	}
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
 }
