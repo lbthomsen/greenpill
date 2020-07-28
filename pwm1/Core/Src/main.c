@@ -76,6 +76,8 @@ static void MX_TIM4_Init(void);
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_SET);
 	if (htim->Instance == TIM4) {
+
+		// Calculate for all 3 leds
 		for (uint8_t i = 0; i < 3; ++i) {
 
 			// Calculate duty cycle.  Using cos rather than sin so that an angle of
@@ -90,6 +92,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 				angle[i] -= M_PI2;
 
 		}
+
 	}
 	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_4, GPIO_PIN_RESET);
 }
