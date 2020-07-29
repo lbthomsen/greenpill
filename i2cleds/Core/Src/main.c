@@ -14,7 +14,9 @@
  * License. You may obtain a copy of the License at:
  *                        opensource.org/licenses/MIT
  *
- * Drive 5 RGB LEDS connected to 15 pins of the I2C GPIO expander AW9523.
+ * Drive 5 RGB LEDS hooked up to to 15 pins of the I2C GPIO expander AW9523.
+ * The AW9523 can control the intensity of each led by controlling the current
+ * (so not the usual PWM approach).
  *
  ******************************************************************************
  */
@@ -60,6 +62,8 @@ float angle[5][3] = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0,
 float velocity[5][3] = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, {
 		0, 0, 0 } };
 
+uint8_t amplitude[5][3] = { {128, 128, 128}, {128, 128, 128}, {128, 128, 128}, {128, 128, 128}, {128, 128, 128}};
+
 uint8_t i2c_values[17] =
 		{ 0x20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
@@ -100,8 +104,8 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 			// Calculate duty cycle.  Using cos rather than sin so that an angle of
 			// 0 will switch the LED off.
 			for (uint8_t c = 0; c < 3; c++) {
-				*(uint8_t*) led_register[i][c] = (uint8_t) (128
-						- arm_cos_f32(angle[i][c]) * 128);
+				*(uint8_t*) led_register[i][c] = (uint8_t) (amplitude[i][c]
+						- arm_cos_f32(angle[i][c]) * amplitude[i][c]);
 
 				angle[i][c] += velocity[i][c];
 				if (angle[i][c] > M_PI2)
@@ -136,6 +140,12 @@ void set_freq(uint8_t led, float r, float g, float b) {
 	velocity[led][R] = M_PI2 / (SAMPLE_FREQ / r);
 	velocity[led][G] = M_PI2 / (SAMPLE_FREQ / g);
 	velocity[led][B] = M_PI2 / (SAMPLE_FREQ / b);
+}
+
+void set_amplitude(uint8_t led, uint8_t r, uint8_t g, uint8_t b) {
+	amplitude[led][R] = r;
+	amplitude[led][G] = g;
+	amplitude[led][B] = b;
 }
 
 /* USER CODE END 0 */
@@ -174,17 +184,22 @@ int main(void) {
 	// Yank gpio expander rst high
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET);
 
-	aw9523_write_register(0x11, 0x03);
+	aw9523_write_register(0x11, 0x00); // set to 0x00, 0x01, 0x02 or 0x03 to limit max current per pin.
 	aw9523_write_register(0x12, 0x00);
 	aw9523_write_register(0x13, 0x80);
 	update_leds(i2c_values);
 
 	HAL_TIM_Base_Start_IT(&htim4);
 
-	set_freq(0, 1, 0, 0);
+	//set_amplitude(0, 30, 30, 30);
+	//set_amplitude(1, 30, 30, 30);
+	//set_amplitude(2, 20, 20, 20);
+	//set_amplitude(3, 30, 30, 30);
+	//set_amplitude(4, 30, 30, 30);
+	set_freq(0, 1, 1, 0);
 	set_freq(1, 0, 0.4, 0);
-	set_freq(2, 0.1, 0, 0.1);
-	set_angle(2, 0, 0, M_PI);
+	set_freq(2, 0.1, 0.1, 0.1);
+	//set_angle(2, 0, 0, M_PI);
 	set_freq(3, 0.1, 0, 0.15);
 	set_freq(4, 0, 0.35, 0.3);
 
