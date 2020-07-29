@@ -62,7 +62,7 @@ float angle[5][3] = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0,
 float velocity[5][3] = { { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, { 0, 0, 0 }, {
 		0, 0, 0 } };
 
-uint8_t amplitude[5][3] = { {128, 128, 128}, {128, 128, 128}, {128, 128, 128}, {128, 128, 128}, {128, 128, 128}};
+uint8_t amplitude[5][3] = { {127, 127, 127}, {127, 127, 127}, {127, 127, 127}, {127, 127, 127}, {127, 127, 127}};
 
 uint8_t i2c_values[17] =
 		{ 0x20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -184,7 +184,7 @@ int main(void) {
 	// Yank gpio expander rst high
 	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET);
 
-	aw9523_write_register(0x11, 0x00); // set to 0x00, 0x01, 0x02 or 0x03 to limit max current per pin.
+	aw9523_write_register(0x11, 0x02); // set to 0x00, 0x01, 0x02 or 0x03 to limit max current per pin.
 	aw9523_write_register(0x12, 0x00);
 	aw9523_write_register(0x13, 0x80);
 	update_leds(i2c_values);
@@ -196,12 +196,18 @@ int main(void) {
 	//set_amplitude(2, 20, 20, 20);
 	//set_amplitude(3, 30, 30, 30);
 	//set_amplitude(4, 30, 30, 30);
-	set_freq(0, 1, 1, 0);
-	set_freq(1, 0, 0.4, 0);
-	set_freq(2, 0.1, 0.1, 0.1);
+	//set_freq(0, 1, 1, 0);
+	//set_freq(1, 0, 0.4, 0);
+	//set_freq(2, 0.1, 0.1, 0.1);
 	//set_angle(2, 0, 0, M_PI);
-	set_freq(3, 0.1, 0, 0.15);
-	set_freq(4, 0, 0.35, 0.3);
+	//set_freq(3, 0.1, 0, 0.15);
+	//set_freq(4, 0, 0.35, 0.3);
+
+	set_angle(0, M_PI, M_PI, M_PI);
+	set_angle(1, M_PI, M_PI, M_PI);
+	set_angle(2, M_PI, M_PI, M_PI);
+	set_angle(3, M_PI, M_PI, M_PI);
+	set_angle(4, M_PI, M_PI, M_PI);
 
 	/* USER CODE END 2 */
 
