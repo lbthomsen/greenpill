@@ -27,23 +27,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   ALLOC
  11 .ARM.attributes 00000029  00000000  00000000  0002000c  2**0
                   CONTENTS, READONLY
- 12 .debug_info   0000744d  00000000  00000000  00020035  2**0
+ 12 .debug_info   000074c6  00000000  00000000  00020035  2**0
                   CONTENTS, READONLY, DEBUGGING
- 13 .debug_abbrev 00001315  00000000  00000000  00027482  2**0
+ 13 .debug_abbrev 00001304  00000000  00000000  000274fb  2**0
                   CONTENTS, READONLY, DEBUGGING
- 14 .debug_aranges 000008f0  00000000  00000000  00028798  2**3
+ 14 .debug_aranges 000008f0  00000000  00000000  00028800  2**3
                   CONTENTS, READONLY, DEBUGGING
- 15 .debug_ranges 00000848  00000000  00000000  00029088  2**3
+ 15 .debug_ranges 00000848  00000000  00000000  000290f0  2**3
                   CONTENTS, READONLY, DEBUGGING
- 16 .debug_macro  0001300b  00000000  00000000  000298d0  2**0
+ 16 .debug_macro  0001300b  00000000  00000000  00029938  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_line   00005d61  00000000  00000000  0003c8db  2**0
+ 17 .debug_line   00005d63  00000000  00000000  0003c943  2**0
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_str    0006b458  00000000  00000000  0004263c  2**0
+ 18 .debug_str    0006b3de  00000000  00000000  000426a6  2**0
                   CONTENTS, READONLY, DEBUGGING
- 19 .comment      0000007b  00000000  00000000  000ada94  2**0
+ 19 .comment      0000007b  00000000  00000000  000ada84  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00002494  00000000  00000000  000adb10  2**2
+ 20 .debug_frame  00002494  00000000  00000000  000adb00  2**2
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
@@ -177,7 +177,8 @@ void SystemClock_Config(void)
  80001b6:	60da      	str	r2, [r3, #12]
  80001b8:	611a      	str	r2, [r3, #16]
 
-  /** Initializes the CPU, AHB and APB busses clocks 
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
   */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
  80001ba:	2301      	movs	r3, #1
@@ -211,7 +212,7 @@ void SystemClock_Config(void)
     Error_Handler();
  80001ec:	f000 f8c0 	bl	8000370 <Error_Handler>
   }
-  /** Initializes the CPU, AHB and APB busses clocks 
+  /** Initializes the CPU, AHB and APB buses clocks
   */
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
  80001f0:	230f      	movs	r3, #15
@@ -284,17 +285,17 @@ static void MX_TIM4_Init(void)
  8000240:	4b1d      	ldr	r3, [pc, #116]	; (80002b8 <MX_TIM4_Init+0x94>)
  8000242:	4a1e      	ldr	r2, [pc, #120]	; (80002bc <MX_TIM4_Init+0x98>)
  8000244:	601a      	str	r2, [r3, #0]
-  htim4.Init.Prescaler = 9999;
+  htim4.Init.Prescaler = 7199;
  8000246:	4b1c      	ldr	r3, [pc, #112]	; (80002b8 <MX_TIM4_Init+0x94>)
- 8000248:	f242 720f 	movw	r2, #9999	; 0x270f
+ 8000248:	f641 421f 	movw	r2, #7199	; 0x1c1f
  800024c:	605a      	str	r2, [r3, #4]
   htim4.Init.CounterMode = TIM_COUNTERMODE_UP;
  800024e:	4b1a      	ldr	r3, [pc, #104]	; (80002b8 <MX_TIM4_Init+0x94>)
  8000250:	2200      	movs	r2, #0
  8000252:	609a      	str	r2, [r3, #8]
-  htim4.Init.Period = 3599;
+  htim4.Init.Period = 999;
  8000254:	4b18      	ldr	r3, [pc, #96]	; (80002b8 <MX_TIM4_Init+0x94>)
- 8000256:	f640 620f 	movw	r2, #3599	; 0xe0f
+ 8000256:	f240 32e7 	movw	r2, #999	; 0x3e7
  800025a:	60da      	str	r2, [r3, #12]
   htim4.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
  800025c:	4b16      	ldr	r3, [pc, #88]	; (80002b8 <MX_TIM4_Init+0x94>)
@@ -516,7 +517,7 @@ void HAL_MspInit(void)
 
   /* System interrupt init*/
 
-  /** NOJTAG: JTAG-DP Disabled and SW-DP Enabled 
+  /** NOJTAG: JTAG-DP Disabled and SW-DP Enabled
   */
   __HAL_AFIO_REMAP_SWJ_NOJTAG();
  80003b2:	4b0a      	ldr	r3, [pc, #40]	; (80003dc <HAL_MspInit+0x60>)
