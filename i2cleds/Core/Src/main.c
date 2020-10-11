@@ -23,6 +23,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "usb_device.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -102,6 +103,7 @@ int _write(int file, char *ptr, int len) {
 	return len;
 }
 
+// Update all leds by transmitting all values using i2c
 void update_leds(uint8_t values[17]) {
 	HAL_I2C_Master_Transmit_IT(&hi2c1, AW9523_ADDR, values, 17);
 }
@@ -111,21 +113,20 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	if (htim->Instance == TIM4) {
 
 		for (uint8_t i = 0; i < 5; i++) {
-			//angle[i][R] = (uint8_t)
-
-			// Calculate duty cycle.  Using cos rather than sin so that an angle of
+			// Calculate value for each LED.  Using cos rather than sin so that an angle of
 			// 0 will switch the LED off.
 			for (uint8_t c = 0; c < 3; c++) {
 				*(uint8_t*) led_register[i][c] = (uint8_t) (amplitude[i][c]
 						- arm_cos_f32(angle[i][c]) * amplitude[i][c]);
 
-				angle[i][c] += velocity[i][c];
-				if (angle[i][c] > M_PI2)
+				angle[i][c] += velocity[i][c];  // Calculate next angle
+				if (angle[i][c] > M_PI2)		// Reset angle if gone full circle
 					angle[i][c] -= M_PI2;
 			}
 
 		}
 
+		// Send the i2c_values array to the device using i2c
 		update_leds(i2c_values);
 	}
 
@@ -198,6 +199,7 @@ int main(void)
   MX_I2C1_Init();
   MX_TIM4_Init();
   MX_TIM3_Init();
+  MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 
   // Timer 3 will generate an interrupt every 500 ms - used to toggle blue onboard led
@@ -213,23 +215,38 @@ int main(void)
 
 	HAL_TIM_Base_Start_IT(&htim4);
 
-	set_amplitude(0, 30, 30, 30);
-	set_amplitude(1, 30, 30, 30);
-	set_amplitude(2, 20, 20, 20);
-	set_amplitude(3, 30, 30, 30);
-	set_amplitude(4, 30, 30, 30);
-	set_freq(0, 1, 0, 1);
-	set_freq(1, 0, 0.4, 0);
-	set_freq(2, 0.1, 0.1, 0.1);
-	set_angle(2, 0, 0, M_PI);
-	set_freq(3, 0.1, 0, 0.15);
-	set_freq(4, 0, 0.35, 0.3);
+	//set_amplitude(0, 30, 30, 30);
+	//set_amplitude(1, 30, 30, 30);
+	//set_amplitude(2, 20, 20, 20);
+	//set_amplitude(3, 30, 30, 30);
+	//set_amplitude(4, 30, 30, 30);
+	//set_amplitude(0, 3, 3, 3);
+	//set_amplitude(1, 3, 3, 3);
+	//set_amplitude(2, 2, 2, 2);
+	//set_amplitude(3, 3, 3, 3);
+	//set_amplitude(4, 3, 3, 3);
+	//set_freq(0, 0.2, 0, 0.2);
+	//set_freq(1, 0, 0.4, 0);
+	//set_freq(2, 0.1, 0.1, 0.1);
+	//set_angle(2, 0, 0, M_PI);
+	//set_freq(3, 0.1, 0, 0.15);
+	//set_freq(4, 0, 0.35, 0.3);
 
-//	set_angle(0, M_PI, M_PI, M_PI);
-//	set_angle(1, M_PI, M_PI, M_PI);
-//	set_angle(2, M_PI, M_PI, M_PI);
-//	set_angle(3, M_PI, M_PI, M_PI);
-//	set_angle(4, M_PI, M_PI, M_PI);
+	// White at different rates
+	set_freq(0, 0.020, 0, 0.0100);
+	set_freq(1, 0.021, 0, 0.0101);
+	set_freq(2, 0.022, 0, 0.0102);
+	set_freq(3, 0.023, 0, 0.0103);
+	set_freq(4, 0.024, 0, 0.0104);
+
+	//set_angle(0, M_PI, M_PI, M_PI);
+	//set_angle(1, M_PI, M_PI, M_PI);
+	//set_angle(2, M_PI, M_PI, M_PI);
+	//set_angle(3, M_PI, M_PI, M_PI);
+	//set_angle(4, M_PI, M_PI, M_PI);
+
+	// Full blast white
+
 
   /* USER CODE END 2 */
 
@@ -239,6 +256,7 @@ int main(void)
 	uint32_t then = 0;
 	uint32_t cnt = 0;
 
+	// Everything is driven by timers and timer interrupt so not much to be done here
 	while (1) {
 
 		cnt++;
@@ -265,6 +283,7 @@ void SystemClock_Config(void)
 {
   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
 
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
@@ -290,6 +309,12 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USB;
+  PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_PLL_DIV1_5;
+  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {
     Error_Handler();
   }
