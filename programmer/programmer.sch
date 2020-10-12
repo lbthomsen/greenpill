@@ -502,4 +502,37 @@ Wire Wire Line
 	2750 4600 2350 4600
 Text Label 2400 4600 0    50   ~ 0
 T_SWO
+$Comp
+L Connector_Generic:Conn_02x05_Odd_Even J5
+U 1 1 5F849A49
+P 3950 6100
+F 0 "J5" H 4000 6425 50  0000 C CNN
+F 1 "~" H 4000 6426 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Vertical" H 3950 6100 50  0001 C CNN
+F 3 "~" H 3950 6100 50  0001 C CNN
+	1    3950 6100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_02x10_Odd_Even J6
+U 1 1 5F84AAD5
+P 5450 5350
+F 0 "J6" H 5500 5875 50  0000 C CNN
+F 1 "~" H 5500 5876 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x10_P2.54mm_Vertical" H 5450 5350 50  0001 C CNN
+F 3 "~" H 5450 5350 50  0001 C CNN
+	1    5450 5350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_02x03_Odd_Even J2
+U 1 1 5F84BCF4
+P 2600 6100
+F 0 "J2" H 2650 6325 50  0000 C CNN
+F 1 "~" H 2650 6326 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical" H 2600 6100 50  0001 C CNN
+F 3 "~" H 2600 6100 50  0001 C CNN
+	1    2600 6100
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
