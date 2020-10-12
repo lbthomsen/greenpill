@@ -4,11 +4,11 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 1 1
-Title "Green Pill"
+Title "Green Pill Programmer"
 Date ""
 Rev "c"
 Comp "Lars Boegild Thomsen"
-Comment1 "STM32 Development Board"
+Comment1 "STM32 Green Pill Programmer"
 Comment2 "lbthomsen@gmail.com"
 Comment3 ""
 Comment4 ""
@@ -19,7 +19,7 @@ U 1 1 5EF5C946
 P 10750 2100
 F 0 "J3" H 10830 2046 50  0000 L CNN
 F 1 "~" H 10830 2001 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x20_P2.54mm_Vertical" H 10750 2100 50  0001 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x20_P2.54mm_Vertical" H 10750 2100 50  0001 C CNN
 F 3 "~" H 10750 2100 50  0001 C CNN
 	1    10750 2100
 	1    0    0    -1  
@@ -30,7 +30,7 @@ U 1 1 5EF5DEF5
 P 10750 4450
 F 0 "J4" H 10830 4396 50  0000 L CNN
 F 1 "~" H 10830 4351 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x20_P2.54mm_Vertical" H 10750 4450 50  0001 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x20_P2.54mm_Vertical" H 10750 4450 50  0001 C CNN
 F 3 "~" H 10750 4450 50  0001 C CNN
 	1    10750 4450
 	1    0    0    -1  
@@ -253,4 +253,168 @@ Wire Notes Line
 	11000 700  9300 700 
 Text Notes 9300 650  0    50   ~ 0
 Pin Headers
+$Comp
+L Connector_Generic:Conn_02x03_Odd_Even J1
+U 1 1 5F85FE28
+P 2050 4500
+F 0 "J1" H 2100 4725 50  0000 C CNN
+F 1 "~" H 2100 4726 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Horizontal" H 2050 4500 50  0001 C CNN
+F 3 "~" H 2050 4500 50  0001 C CNN
+	1    2050 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Regulator_Linear:AMS1117-3.3 U1
+U 1 1 5F861E75
+P 4600 1700
+F 0 "U1" H 4600 1942 50  0000 C CNN
+F 1 "AMS1117-3.3" H 4600 1851 50  0000 C CNN
+F 2 "Package_TO_SOT_SMD:SOT-223-3_TabPin2" H 4600 1900 50  0001 C CNN
+F 3 "http://www.advanced-monolithic.com/pdf/ds1117.pdf" H 4700 1450 50  0001 C CNN
+F 4 "C6186" H 4600 1700 50  0001 C CNN "LCSC"
+	1    4600 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C1
+U 1 1 5F866996
+P 4100 2000
+F 0 "C1" H 4215 2046 50  0000 L CNN
+F 1 "10uF" H 4215 1955 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 4138 1850 50  0001 C CNN
+F 3 "~" H 4100 2000 50  0001 C CNN
+F 4 "C15850" H 4100 2000 50  0001 C CNN "LCSC"
+	1    4100 2000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C2
+U 1 1 5F8683C4
+P 5100 2000
+F 0 "C2" H 5215 2046 50  0000 L CNN
+F 1 "10uF" H 5215 1955 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric" H 5138 1850 50  0001 C CNN
+F 3 "~" H 5100 2000 50  0001 C CNN
+F 4 "C15850" H 5100 2000 50  0001 C CNN "LCSC"
+	1    5100 2000
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0101
+U 1 1 5F8697C0
+P 4100 2250
+F 0 "#PWR0101" H 4100 2000 50  0001 C CNN
+F 1 "GND" H 4105 2077 50  0000 C CNN
+F 2 "" H 4100 2250 50  0001 C CNN
+F 3 "" H 4100 2250 50  0001 C CNN
+	1    4100 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0102
+U 1 1 5F86A8AD
+P 4600 2250
+F 0 "#PWR0102" H 4600 2000 50  0001 C CNN
+F 1 "GND" H 4605 2077 50  0000 C CNN
+F 2 "" H 4600 2250 50  0001 C CNN
+F 3 "" H 4600 2250 50  0001 C CNN
+	1    4600 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0103
+U 1 1 5F86ACAD
+P 5100 2250
+F 0 "#PWR0103" H 5100 2000 50  0001 C CNN
+F 1 "GND" H 5105 2077 50  0000 C CNN
+F 2 "" H 5100 2250 50  0001 C CNN
+F 3 "" H 5100 2250 50  0001 C CNN
+	1    5100 2250
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0104
+U 1 1 5F86B381
+P 4100 1600
+F 0 "#PWR0104" H 4100 1450 50  0001 C CNN
+F 1 "+5V" H 4115 1773 50  0000 C CNN
+F 2 "" H 4100 1600 50  0001 C CNN
+F 3 "" H 4100 1600 50  0001 C CNN
+	1    4100 1600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR0105
+U 1 1 5F86BAD1
+P 5100 1600
+F 0 "#PWR0105" H 5100 1450 50  0001 C CNN
+F 1 "+3.3V" H 5115 1773 50  0000 C CNN
+F 2 "" H 5100 1600 50  0001 C CNN
+F 3 "" H 5100 1600 50  0001 C CNN
+	1    5100 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4100 1600 4100 1700
+Wire Wire Line
+	4300 1700 4100 1700
+Connection ~ 4100 1700
+Wire Wire Line
+	4100 1700 4100 1850
+Wire Wire Line
+	5100 1600 5100 1700
+Wire Wire Line
+	4900 1700 5100 1700
+Connection ~ 5100 1700
+Wire Wire Line
+	5100 1700 5100 1850
+Wire Wire Line
+	4600 2000 4600 2250
+Wire Wire Line
+	4100 2150 4100 2250
+Wire Wire Line
+	5100 2150 5100 2250
+$Comp
+L power:+3.3V #PWR0106
+U 1 1 5F8753EC
+P 2450 4300
+F 0 "#PWR0106" H 2450 4150 50  0001 C CNN
+F 1 "+3.3V" H 2465 4473 50  0000 C CNN
+F 2 "" H 2450 4300 50  0001 C CNN
+F 3 "" H 2450 4300 50  0001 C CNN
+	1    2450 4300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0107
+U 1 1 5F8761AC
+P 1750 4700
+F 0 "#PWR0107" H 1750 4450 50  0001 C CNN
+F 1 "GND" H 1755 4527 50  0000 C CNN
+F 2 "" H 1750 4700 50  0001 C CNN
+F 3 "" H 1750 4700 50  0001 C CNN
+	1    1750 4700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2450 4300 2450 4400
+Wire Wire Line
+	2450 4400 2350 4400
+Wire Wire Line
+	1850 4600 1750 4600
+Wire Wire Line
+	1750 4600 1750 4700
+Text GLabel 1450 4500 0    50   Input ~ 0
+B13
+Wire Wire Line
+	1450 4500 1850 4500
+Text Label 1500 4500 0    50   ~ 0
+T_CLK
+Text GLabel 2750 4500 2    50   Input ~ 0
+B14
+Wire Wire Line
+	2750 4500 2350 4500
+Text Label 2500 4500 0    50   ~ 0
+T_IO
 $EndSCHEMATC
