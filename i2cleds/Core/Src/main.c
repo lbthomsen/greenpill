@@ -232,43 +232,23 @@ int main(void)
 	//set_freq(3, 0.1, 0, 0.15);
 	//set_freq(4, 0, 0.35, 0.3);
 
-<<<<<<< HEAD
-	set_angle(0, 0, 0, M_PI);
-	set_freq(0, 0.1, 0, 0.1);
-
-	set_angle(1, 0, M_PI, 0);
-	set_freq(1, 0.1, 0.1, 0);
-
-	set_angle(2, 0, 0, M_PI);
-	set_freq(2, 0, 3, 3.1);
-
-	set_angle(3, 0, M_PI/3, 2 * M_PI/3);
-	set_freq(3, 1, 0.1, 0.1);
-
-	set_angle(4, 0, M_PI/2, M_PI);
-	set_freq(4, 0.1, 1, 0.1);
-=======
 	// White at different rates
 	set_freq(0, 0.020, 0, 0.0100);
 	set_freq(1, 0.021, 0, 0.0101);
 	set_freq(2, 0.022, 0, 0.0102);
 	set_freq(3, 0.023, 0, 0.0103);
 	set_freq(4, 0.024, 0, 0.0104);
->>>>>>> 865061769c348c5b8586a9e7f772e9833c7327a5
 
 	//set_angle(0, M_PI, M_PI, M_PI);
 	//set_angle(1, M_PI, M_PI, M_PI);
 	//set_angle(2, M_PI, M_PI, M_PI);
 	//set_angle(3, M_PI, M_PI, M_PI);
 	//set_angle(4, M_PI, M_PI, M_PI);
-<<<<<<< HEAD
-=======
 
 	// Full blast white
 
 
   /* USER CODE END 2 */
->>>>>>> 865061769c348c5b8586a9e7f772e9833c7327a5
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
