@@ -1,8 +1,0 @@
-main.c:76:6:HAL_TIM_PeriodElapsedCallback	40	static
-main.c:100:5:_write	12	static,ignoring_inline_asm
-main.c:107:6:setFreq	8	static
-main.c:111:6:setAngle	0	static
-main.c:115:6:resetAll	8	static
-main.c:230:6:SystemClock_Config	96	static
-main.c:128:5:main	112	static
-main.c:417:6:Error_Handler	0	static
