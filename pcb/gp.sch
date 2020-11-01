@@ -992,8 +992,6 @@ Wire Wire Line
 Connection ~ 1700 3650
 Wire Wire Line
 	1700 3650 1600 3650
-Wire Wire Line
-	10450 1200 10550 1200
 $Comp
 L power:+3.3V #PWR032
 U 1 1 5EF5F475
@@ -1008,22 +1006,9 @@ $EndComp
 Wire Wire Line
 	10000 2900 10550 2900
 Wire Wire Line
-	10000 1100 10000 2900
+	10000 1100 10000 1200
 Wire Wire Line
 	9700 2800 10550 2800
-$Comp
-L power:GND #PWR034
-U 1 1 5EF9371A
-P 10450 3200
-F 0 "#PWR034" H 10450 2950 50  0001 C CNN
-F 1 "GND" H 10455 3027 50  0000 C CNN
-F 2 "" H 10450 3200 50  0001 C CNN
-F 3 "" H 10450 3200 50  0001 C CNN
-	1    10450 3200
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	10450 3200 10450 3100
 Wire Wire Line
 	10550 3100 10450 3100
 $Comp
@@ -1285,24 +1270,13 @@ Wire Notes Line
 Text Notes 550  2400 0    50   ~ 0
 USB C Connection
 Wire Wire Line
-	10450 1200 10450 3100
-Connection ~ 10450 3100
-Wire Wire Line
 	10550 3000 10200 3000
 Wire Wire Line
 	10200 3000 10200 1100
-Wire Wire Line
-	10550 3550 10450 3550
-Wire Wire Line
-	10450 3550 10450 5550
-Text GLabel 9700 3650 0    50   Input ~ 0
+Text GLabel 8450 5550 0    50   Input ~ 0
 RST
-Text GLabel 9700 3750 0    50   Input ~ 0
+Text GLabel 8450 5650 0    50   Input ~ 0
 BO0
-Wire Wire Line
-	10550 3650 9700 3650
-Wire Wire Line
-	10550 3750 9700 3750
 Text GLabel 6650 2850 0    50   Input ~ 0
 B2
 Text GLabel 9700 2600 0    50   Input ~ 0
@@ -1519,4 +1493,26 @@ Wire Wire Line
 Connection ~ 6750 2950
 Wire Wire Line
 	6750 2950 6650 2950
+Wire Wire Line
+	10450 3100 10450 3650
+Wire Wire Line
+	10550 3650 10450 3650
+Connection ~ 10450 3650
+Wire Wire Line
+	10450 3650 10450 5550
+Wire Wire Line
+	10200 3000 10200 3750
+Wire Wire Line
+	10200 3750 10550 3750
+Connection ~ 10200 3000
+Wire Wire Line
+	10000 2900 10000 3550
+Wire Wire Line
+	10000 3550 10550 3550
+Connection ~ 10000 2900
+Wire Wire Line
+	10000 1200 10550 1200
+Connection ~ 10000 1200
+Wire Wire Line
+	10000 1200 10000 2900
 $EndSCHEMATC
