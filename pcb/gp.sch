@@ -496,11 +496,11 @@ Wire Wire Line
 	10550 1400 9700 1400
 Wire Wire Line
 	9700 1500 10550 1500
-Text GLabel 9700 1600 0    50   Input ~ 0
-A0
 Text GLabel 9700 1700 0    50   Input ~ 0
-A1
+A0
 Text GLabel 9700 1800 0    50   Input ~ 0
+A1
+Text GLabel 9700 1900 0    50   Input ~ 0
 A2
 Wire Wire Line
 	9700 1600 10550 1600
@@ -576,15 +576,15 @@ Wire Wire Line
 	9700 5450 10550 5450
 Wire Wire Line
 	9700 1900 10550 1900
-Text GLabel 9700 1900 0    50   Input ~ 0
-A3
 Text GLabel 9700 2000 0    50   Input ~ 0
-A4
+A3
 Text GLabel 9700 2100 0    50   Input ~ 0
-A5
+A4
 Text GLabel 9700 2200 0    50   Input ~ 0
-A6
+A5
 Text GLabel 9700 2300 0    50   Input ~ 0
+A6
+Text GLabel 9700 2400 0    50   Input ~ 0
 A7
 Wire Wire Line
 	9700 2300 10550 2300
@@ -594,14 +594,12 @@ Wire Wire Line
 	9700 2100 10550 2100
 Wire Wire Line
 	10550 2000 9700 2000
-Text GLabel 9700 2400 0    50   Input ~ 0
-B0
 Text GLabel 9700 2500 0    50   Input ~ 0
+B0
+Text GLabel 9700 2600 0    50   Input ~ 0
 B1
-Text GLabel 9700 2700 0    50   Input ~ 0
-B10
 Text GLabel 9700 2800 0    50   Input ~ 0
-B11
+B10
 Wire Wire Line
 	9700 2400 10550 2400
 Wire Wire Line
@@ -1009,8 +1007,6 @@ Wire Wire Line
 	10000 1100 10000 1200
 Wire Wire Line
 	9700 2800 10550 2800
-Wire Wire Line
-	10550 3100 10450 3100
 $Comp
 L Device:R R7
 U 1 1 5EF5EBD1
@@ -1269,17 +1265,13 @@ Wire Notes Line
 	550  2450 550  4950
 Text Notes 550  2400 0    50   ~ 0
 USB C Connection
-Wire Wire Line
-	10550 3000 10200 3000
-Wire Wire Line
-	10200 3000 10200 1100
 Text GLabel 8450 5550 0    50   Input ~ 0
 RST
 Text GLabel 8450 5650 0    50   Input ~ 0
 BO0
 Text GLabel 6650 2850 0    50   Input ~ 0
 B2
-Text GLabel 9700 2600 0    50   Input ~ 0
+Text GLabel 9700 2700 0    50   Input ~ 0
 B2
 Text Notes 9350 6350 0    50   ~ 0
 NOTICE!  Headers are mostly but NOT\n100 % compatible with the blue/black pill.
@@ -1494,17 +1486,12 @@ Connection ~ 6750 2950
 Wire Wire Line
 	6750 2950 6650 2950
 Wire Wire Line
-	10450 3100 10450 3650
-Wire Wire Line
 	10550 3650 10450 3650
 Connection ~ 10450 3650
 Wire Wire Line
 	10450 3650 10450 5550
 Wire Wire Line
-	10200 3000 10200 3750
-Wire Wire Line
 	10200 3750 10550 3750
-Connection ~ 10200 3000
 Wire Wire Line
 	10000 2900 10000 3550
 Wire Wire Line
@@ -1515,4 +1502,17 @@ Wire Wire Line
 Connection ~ 10000 1200
 Wire Wire Line
 	10000 1200 10000 2900
+Text GLabel 9700 1600 0    50   Input ~ 0
+RST
+Wire Wire Line
+	10200 1100 10200 3100
+Wire Wire Line
+	10450 3000 10550 3000
+Wire Wire Line
+	10450 3000 10450 3650
+Wire Wire Line
+	10550 3100 10200 3100
+Connection ~ 10200 3100
+Wire Wire Line
+	10200 3100 10200 3750
 $EndSCHEMATC

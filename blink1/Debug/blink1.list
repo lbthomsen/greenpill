@@ -304,8 +304,8 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Pull = GPIO_NOPULL;
  800028a:	2300      	movs	r3, #0
  800028c:	61bb      	str	r3, [r7, #24]
-  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
- 800028e:	2302      	movs	r3, #2
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_MEDIUM;
+ 800028e:	2301      	movs	r3, #1
  8000290:	61fb      	str	r3, [r7, #28]
   HAL_GPIO_Init(GPIOC, &GPIO_InitStruct);
  8000292:	f107 0310 	add.w	r3, r7, #16
