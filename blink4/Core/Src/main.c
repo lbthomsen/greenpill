@@ -87,15 +87,12 @@ int main(void)
   SystemClock_Config();
 
   /* USER CODE BEGIN SysInit */
-  HAL_Delay(100);
   /* USER CODE END SysInit */
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_TIM4_Init();
   /* USER CODE BEGIN 2 */
-
-  HAL_Delay(500);
 
   // Start the timer in PWM mode - output will be on PB6
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);

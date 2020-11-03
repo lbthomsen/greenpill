@@ -97,8 +97,8 @@ int main(void)
 	// Toggle the LED
 	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
 
-	// Wait for 100 ms
-	HAL_Delay(100);
+	// Wait for 500 ms
+	HAL_Delay(500);
 
 	// Rinse and repeat :)
 

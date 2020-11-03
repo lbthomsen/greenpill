@@ -99,7 +99,7 @@ int main(void)
 
 	// Check the current tick
 	uint32_t now = HAL_GetTick();
-	if (now % 100 == 0 && now != then) { // Only if the current tick is 500 ms after the last
+	if (now % 500 == 0 && now != then) { // Only if the current tick is 500 ms after the last
 
 		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13); // Toggle LED
 
