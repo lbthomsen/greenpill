@@ -1265,16 +1265,10 @@ Wire Notes Line
 	550  2450 550  4950
 Text Notes 550  2400 0    50   ~ 0
 USB C Connection
-Text GLabel 8450 5550 0    50   Input ~ 0
-RST
-Text GLabel 8450 5650 0    50   Input ~ 0
-BO0
 Text GLabel 6650 2850 0    50   Input ~ 0
 B2
 Text GLabel 9700 2700 0    50   Input ~ 0
 B2
-Text Notes 9350 6350 0    50   ~ 0
-NOTICE!  Headers are mostly but NOT\n100 % compatible with the blue/black pill.
 $Comp
 L power:PWR_FLAG #FLG02
 U 1 1 5F1B7E76
@@ -1404,11 +1398,11 @@ Connection ~ 2200 6450
 Wire Wire Line
 	2200 6450 2200 6550
 Wire Notes Line
-	9300 700  9300 6400
+	9300 700  9300 5950
 Wire Notes Line
-	9300 6400 11000 6400
+	9300 5950 11000 5950
 Wire Notes Line
-	11000 6400 11000 700 
+	11000 5950 11000 700 
 Wire Notes Line
 	11000 700  9300 700 
 Text Notes 4300 650  0    50   ~ 0
