@@ -15,6 +15,6 @@ Comment,Designator,Footprint,LCSC, LCSC
 "470","R8,R9","Resistor_SMD:R_0402_1005Metric","","C25117"
 "~","SW2,SW1","Button_Switch_SMD:SW_Push_1P1T_NO_CK_KMR2","","C498310"
 "XC6206P332MR","U1","Package_TO_SOT_SMD:SOT-23","","C5446"
-"STM32F103CBT6","U2","Package_QFP:LQFP-48_7x7mm_P0.5mm","","C8304"
+"STM32L151C8T6","U2","Package_QFP:LQFP-48_7x7mm_P0.5mm","","C9861"
 "8M","Y1","Crystal:Crystal_SMD_Abracon_ABM3-2Pin_5.0x3.2mm","","C115962"
 "NM (32.768k)","Y2","Crystal:Crystal_SMD_EuroQuartz_EQ161-2Pin_3.2x1.5mm","","NM-C32346"
