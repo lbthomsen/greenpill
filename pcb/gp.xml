@@ -2,8 +2,8 @@
 <export version="D">
   <design>
     <source>/home/lth/src/greenpill/pcb/gp.sch</source>
-    <date>Sun 29 Nov 2020 11:34:58 +08</date>
-    <tool>Eeschema 5.1.8+dfsg1-1</tool>
+    <date>Sat 19 Dec 2020 13:52:05 +08</date>
+    <tool>Eeschema 5.1.8+dfsg1-1+b1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
         <title>Green Pill</title>

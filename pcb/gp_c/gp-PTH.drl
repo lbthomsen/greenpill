@@ -1,8 +1,8 @@
 M48
-; DRILL file {KiCad 5.1.8+dfsg1-1} date Sun Nov 29 11:55:34 2020
+; DRILL file {KiCad 5.1.8+dfsg1-1+b1} date Sat Dec 19 13:52:48 2020
 ; FORMAT={-:-/ absolute / inch / decimal}
-; #@! TF.CreationDate,2020-11-29T11:55:34+08:00
-; #@! TF.GenerationSoftware,Kicad,Pcbnew,5.1.8+dfsg1-1
+; #@! TF.CreationDate,2020-12-19T13:52:48+08:00
+; #@! TF.GenerationSoftware,Kicad,Pcbnew,5.1.8+dfsg1-1+b1
 ; #@! TF.FileFunction,Plated,1,2,PTH
 FMAT,2
 INCH
@@ -45,6 +45,26 @@ X7.575Y-4.125
 X7.6Y-4.15
 X7.625Y-4.125
 T3
+X6.05Y-3.7
+X6.15Y-3.7
+X6.25Y-3.7
+X6.35Y-3.7
+X6.45Y-3.7
+X6.55Y-3.7
+X6.65Y-3.7
+X6.75Y-3.7
+X6.85Y-3.7
+X6.95Y-3.7
+X7.05Y-3.7
+X7.15Y-3.7
+X7.25Y-3.7
+X7.35Y-3.7
+X7.45Y-3.7
+X7.55Y-3.7
+X7.65Y-3.7
+X7.75Y-3.7
+X7.85Y-3.7
+X7.95Y-3.7
 X6.025Y-3.9
 X6.025Y-4.0
 X6.025Y-4.1
@@ -71,26 +91,6 @@ X7.65Y-4.3
 X7.75Y-4.3
 X7.85Y-4.3
 X7.95Y-4.3
-X6.05Y-3.7
-X6.15Y-3.7
-X6.25Y-3.7
-X6.35Y-3.7
-X6.45Y-3.7
-X6.55Y-3.7
-X6.65Y-3.7
-X6.75Y-3.7
-X6.85Y-3.7
-X6.95Y-3.7
-X7.05Y-3.7
-X7.15Y-3.7
-X7.25Y-3.7
-X7.35Y-3.7
-X7.45Y-3.7
-X7.55Y-3.7
-X7.65Y-3.7
-X7.75Y-3.7
-X7.85Y-3.7
-X7.95Y-3.7
 T2
 G00X7.7301Y-3.8299
 M15
