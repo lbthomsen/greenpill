@@ -239,8 +239,6 @@ Text GLabel 6650 3550 0    50   Input ~ 0
 B9
 Text GLabel 6650 3650 0    50   Input ~ 0
 B10
-Text GLabel 6650 3750 0    50   Input ~ 0
-B11
 Text GLabel 6650 3850 0    50   Input ~ 0
 B12
 Text GLabel 6650 3950 0    50   Input ~ 0
@@ -335,8 +333,6 @@ Wire Wire Line
 	7000 3550 6650 3550
 Wire Wire Line
 	6650 3650 7000 3650
-Wire Wire Line
-	7000 3750 6650 3750
 Wire Wire Line
 	6650 3850 7000 3850
 Wire Wire Line
@@ -1509,4 +1505,5 @@ F 4 "C8304" H 7700 2850 50  0001 C CNN "LCSC"
 	1    7700 2850
 	1    0    0    -1  
 $EndComp
+NoConn ~ 7000 3750
 $EndSCHEMATC
