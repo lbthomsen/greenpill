@@ -848,21 +848,6 @@ Wire Wire Line
 	1900 3750 1700 3750
 Connection ~ 1700 3750
 $Comp
-L power:+3.3V #PWR011
-U 1 1 5F18590E
-P 2450 2850
-F 0 "#PWR011" H 2450 2700 50  0001 C CNN
-F 1 "+3.3V" H 2465 3023 50  0000 C CNN
-F 2 "" H 2450 2850 50  0001 C CNN
-F 3 "" H 2450 2850 50  0001 C CNN
-	1    2450 2850
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2450 2850 2450 3750
-Wire Wire Line
-	2450 3750 2200 3750
-$Comp
 L power:+5V #PWR033
 U 1 1 5F1B0776
 P 10200 1100
@@ -1505,5 +1490,12 @@ F 4 "C8304" H 7700 2850 50  0001 C CNN "LCSC"
 	1    7700 2850
 	1    0    0    -1  
 $EndComp
-NoConn ~ 7000 3750
+Text GLabel 2650 3750 2    50   Input ~ 0
+PU
+Wire Wire Line
+	2200 3750 2650 3750
+Text GLabel 6650 3750 0    50   Input ~ 0
+PU
+Wire Wire Line
+	7000 3750 6650 3750
 $EndSCHEMATC
