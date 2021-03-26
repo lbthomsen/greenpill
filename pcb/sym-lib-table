@@ -1,3 +1,4 @@
 (sym_lib_table
   (lib (name greenpill)(type Legacy)(uri ${KIPRJMOD}/greenpill.lib)(options "")(descr ""))
+  (lib (name lifeline)(type Legacy)(uri /home/lth/src/lifeline/pcb/lifeline.lib)(options "")(descr ""))
 )
