@@ -32,11 +32,9 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-
 #define T4_PRE 7199
 #define T4_CNT 9999
 #define PWM_1 4999
-
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -96,9 +94,6 @@ int main(void)
 
   // Start the timer in PWM mode - output will be on PB6
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_1);
-
-  // Enable drive pin - led should remain off as PWM is low
-  HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET);
 
   /* USER CODE END 2 */
 
