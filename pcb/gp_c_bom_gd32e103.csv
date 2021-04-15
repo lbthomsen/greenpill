@@ -13,7 +13,7 @@ Comment,Designator,Footprint,LCSC
 "NM","R5,R1","Resistor_SMD:R_0402_1005Metric"
 "5.1k","R7,R6","Resistor_SMD:R_0402_1005Metric","C25905"
 "220","R8,R9","Resistor_SMD:R_0402_1005Metric","C25091"
-"~","SW2,SW1","greenpill:TS-1088R-02526","C455281"
+"TS-1088R-02526","SW2,SW1","greenpill:TS-1088R-02526","C455281"
 "XC6206P332MR","U1","Package_TO_SOT_SMD:SOT-23","C5446"
 "GD32E103CBT6","U2","Package_QFP:LQFP-48_7x7mm_P0.5mm","C470882"
 "16Mhz","Y1","Crystal:Crystal_SMD_3225-4Pin_3.2x2.5mm","C13738"

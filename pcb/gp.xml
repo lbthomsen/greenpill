@@ -2,7 +2,7 @@
 <export version="D">
   <design>
     <source>/home/lth/src/greenpill/pcb/gp.sch</source>
-    <date>Thu 15 Apr 2021 16:36:52 +08</date>
+    <date>Thu 15 Apr 2021 16:52:07 +08</date>
     <tool>Eeschema 5.1.9+dfsg1-1</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -91,9 +91,9 @@
       <tstamp>5F050A47</tstamp>
     </comp>
     <comp ref="SW2">
-      <value>~</value>
+      <value>TS-1088R-02526</value>
       <footprint>greenpill:TS-1088R-02526</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/1901111503_XKB-Enterprise-TS-1187A-B-A-B_C318884.pdf</datasheet>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1912111437_XUNPU-TS-1088R-02526_C455281.pdf</datasheet>
       <fields>
         <field name="LCSC">C455281</field>
       </fields>
@@ -242,9 +242,9 @@
       <tstamp>5F066105</tstamp>
     </comp>
     <comp ref="SW1">
-      <value>~</value>
+      <value>TS-1088R-02526</value>
       <footprint>greenpill:TS-1088R-02526</footprint>
-      <datasheet>https://datasheet.lcsc.com/szlcsc/1901111503_XKB-Enterprise-TS-1187A-B-A-B_C318884.pdf</datasheet>
+      <datasheet>https://datasheet.lcsc.com/szlcsc/1912111437_XUNPU-TS-1088R-02526_C455281.pdf</datasheet>
       <fields>
         <field name="LCSC">C455281</field>
       </fields>
