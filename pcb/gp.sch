@@ -6,7 +6,7 @@ encoding utf-8
 Sheet 1 1
 Title "Green Pill"
 Date ""
-Rev "c"
+Rev "d"
 Comp "Lars Boegild Thomsen"
 Comment1 "STM32 Development Board"
 Comment2 "lbthomsen@gmail.com"
