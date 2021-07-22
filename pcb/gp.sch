@@ -1478,14 +1478,6 @@ F 4 "C8304" H 7700 2850 50  0001 C CNN "LCSC"
 	1    7700 2850
 	1    0    0    -1  
 $EndComp
-Text GLabel 2650 3750 2    50   Input ~ 0
-PU
-Wire Wire Line
-	2200 3750 2650 3750
-Text GLabel 6650 3750 0    50   Input ~ 0
-PU
-Wire Wire Line
-	7000 3750 6650 3750
 $Comp
 L Device:Crystal_GND24 Y1
 U 1 1 6066D42F
@@ -1528,4 +1520,20 @@ Wire Wire Line
 	5050 3100 4550 3100
 Wire Wire Line
 	4550 3100 4550 4550
+$Comp
+L power:+3.3V #PWR0103
+U 1 1 60C8C245
+P 2400 2850
+F 0 "#PWR0103" H 2400 2700 50  0001 C CNN
+F 1 "+3.3V" H 2415 3023 50  0000 C CNN
+F 2 "" H 2400 2850 50  0001 C CNN
+F 3 "" H 2400 2850 50  0001 C CNN
+	1    2400 2850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2400 2850 2400 3750
+Wire Wire Line
+	2400 3750 2200 3750
+NoConn ~ 7000 3750
 $EndSCHEMATC
