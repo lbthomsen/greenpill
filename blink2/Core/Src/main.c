@@ -92,14 +92,14 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  uint32_t then = 0;
+  uint32_t then = 0, now = 0;
 
   while (1)
   {
 
 	// Check the current tick
-	uint32_t now = HAL_GetTick();
-	if (now % 500 == 0 && now != then) { // Only if the current tick is 500 ms after the last
+	now = HAL_GetTick();
+	if (now - then >= 500) { // Only if the current tick is 500 ms after the last
 
 		HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13); // Toggle LED
 
