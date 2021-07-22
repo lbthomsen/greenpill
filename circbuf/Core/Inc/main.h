@@ -47,7 +47,13 @@ extern "C" {
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-
+#ifdef DEBUG
+#define DBG(...)    printf(__VA_ARGS__);\
+                            printf("\n");\
+                            HAL_Delay(1);
+#else
+#define DBG(...)
+#endif
 /* USER CODE END EM */
 
 /* Exported functions prototypes ---------------------------------------------*/

@@ -23,7 +23,8 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "stdio.h"
+#include "usbd_cdc_if.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -33,7 +34,12 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define ADC_BUFFER_LENGTH 10
+#define ADC_BUFFER_LENGTH 1
+
+#define TEMP_SENSOR_AVG_SLOPE_MV_PER_CELSIUS                        2.5f
+#define TEMP_SENSOR_VOLTAGE_MV_AT_25                                760.0f
+#define ADC_REFERENCE_VOLTAGE_MV                                    1210.0f
+#define ADC_MAX_OUTPUT_VALUE                                        4095.0f
 /* USER CODE END PD */
 
 /* Private macro -------------------------------------------------------------*/
@@ -48,7 +54,12 @@ DMA_HandleTypeDef hdma_adc1;
 TIM_HandleTypeDef htim3;
 
 /* USER CODE BEGIN PV */
+
 uint16_t adc_buffer[ADC_BUFFER_LENGTH * 2] = {0};
+
+uint32_t adc_callback_count = 0;
+uint16_t temp = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -64,8 +75,14 @@ static void MX_ADC1_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+int _write(int file, char *ptr, int len) {
+    CDC_Transmit_FS((uint8_t *)ptr, len);
+    return len;
+}
+
 void handle_adc(uint16_t *buffer) {
-	asm("NOP");
+	temp = *buffer;
+	adc_callback_count++;
 }
 
 void HAL_ADC_ConvHalfCpltCallback(ADC_HandleTypeDef* hadc) {
@@ -115,12 +132,16 @@ int main(void)
   HAL_TIM_Base_Start_IT(&htim3);
   HAL_ADC_Start_DMA(&hadc1, (uint32_t *)&adc_buffer, ADC_BUFFER_LENGTH * 2);
 
+  HAL_Delay(3000);
+
+  circular_buffer_init();
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-  uint32_t last_led_toggle = 0, now = 0;
+  uint32_t last_led_toggle = 0, last_print = 0,  now = 0;
 
   for (;;)
   {
@@ -129,6 +150,15 @@ int main(void)
 	  if (now - last_led_toggle >= 500) {
 		  HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
 		  last_led_toggle = now;
+	  }
+
+	  if (now - last_print >= 1000) {
+
+		  //float temp_adjusted = (((temp * ADC_REFERENCE_VOLTAGE_MV / ADC_MAX_OUTPUT_VALUE) - TEMP_SENSOR_VOLTAGE_MV_AT_25) / TEMP_SENSOR_AVG_SLOPE_MV_PER_CELSIUS + 25);
+
+		  //DBG("Tick (now = %lu) cb = %lu temp = %f", now / 1000, adc_callback_count, temp_adjusted);
+
+		  last_print = now;
 	  }
 
     /* USER CODE END WHILE */
@@ -205,7 +235,7 @@ static void MX_ADC1_Init(void)
   */
   hadc1.Instance = ADC1;
   hadc1.Init.ScanConvMode = ADC_SCAN_DISABLE;
-  hadc1.Init.ContinuousConvMode = ENABLE;
+  hadc1.Init.ContinuousConvMode = DISABLE;
   hadc1.Init.DiscontinuousConvMode = DISABLE;
   hadc1.Init.ExternalTrigConv = ADC_EXTERNALTRIGCONV_T3_TRGO;
   hadc1.Init.DataAlign = ADC_DATAALIGN_RIGHT;
@@ -218,7 +248,7 @@ static void MX_ADC1_Init(void)
   */
   sConfig.Channel = ADC_CHANNEL_TEMPSENSOR;
   sConfig.Rank = ADC_REGULAR_RANK_1;
-  sConfig.SamplingTime = ADC_SAMPLETIME_1CYCLE_5;
+  sConfig.SamplingTime = ADC_SAMPLETIME_239CYCLES_5;
   if (HAL_ADC_ConfigChannel(&hadc1, &sConfig) != HAL_OK)
   {
     Error_Handler();
@@ -248,7 +278,7 @@ static void MX_TIM3_Init(void)
 
   /* USER CODE END TIM3_Init 1 */
   htim3.Instance = TIM3;
-  htim3.Init.Prescaler = 719;
+  htim3.Init.Prescaler = 7190;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
   htim3.Init.Period = 999;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
@@ -262,7 +292,7 @@ static void MX_TIM3_Init(void)
   {
     Error_Handler();
   }
-  sMasterConfig.MasterOutputTrigger = TIM_TRGO_ENABLE;
+  sMasterConfig.MasterOutputTrigger = TIM_TRGO_UPDATE;
   sMasterConfig.MasterSlaveMode = TIM_MASTERSLAVEMODE_DISABLE;
   if (HAL_TIMEx_MasterConfigSynchronization(&htim3, &sMasterConfig) != HAL_OK)
   {
