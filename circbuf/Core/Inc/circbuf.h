@@ -8,10 +8,6 @@
 #ifndef INC_CIRCBUF_H_
 #define INC_CIRCBUF_H_
 
-#define CIRCULAR_BUFFER_PAGE_SIZE 0x400
-#define CIRCULAR_BUFFER_START 0x08010000
-#define CIRCULAR_BUFFER_END 0x0801FFFF
-
 typedef struct {
 	uint32_t previous; // Points to previous record - first record will have 0x00000000
 	uint32_t data;
