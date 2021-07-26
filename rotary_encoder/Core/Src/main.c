@@ -69,19 +69,20 @@ int _write(int file, char *ptr, int len) {
 
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim) {
 	if (htim->Instance == TIM3) {
-		if (TIM3->CNT > last_count) { // up
-			if (TIM4->CCR4 < TIM4->ARR) TIM4->CCR4++;
-		} else { // down
-			if (TIM4->CCR4 > 0) TIM4->CCR4--;
-		}
-		last_count = TIM3->CNT;
+		TIM4->CCR4 = TIM3->CNT;
+//		if (TIM3->CNT > last_count) { // up
+//			if (TIM4->CCR4 < TIM4->ARR) TIM4->CCR4++;
+//		} else { // down
+//			if (TIM4->CCR4 > 0) TIM4->CCR4--;
+//		}
+//		last_count = TIM3->CNT;
 	}
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	if (GPIO_Pin == BTN_Pin) {
-		TIM3->CNT = TIM3->ARR / 2;
-		TIM4->CCR4 = TIM4->ARR / 2; // Half on
+		TIM3->CNT = 0;
+		TIM4->CCR4 = 0; // Half on
 	}
 }
 
@@ -215,7 +216,7 @@ static void MX_TIM3_Init(void)
   htim3.Instance = TIM3;
   htim3.Init.Prescaler = 0;
   htim3.Init.CounterMode = TIM_COUNTERMODE_UP;
-  htim3.Init.Period = 65535;
+  htim3.Init.Period = 999;
   htim3.Init.ClockDivision = TIM_CLOCKDIVISION_DIV1;
   htim3.Init.AutoReloadPreload = TIM_AUTORELOAD_PRELOAD_DISABLE;
   sConfig.EncoderMode = TIM_ENCODERMODE_TI1;
@@ -288,7 +289,7 @@ static void MX_TIM4_Init(void)
     Error_Handler();
   }
   sConfigOC.OCMode = TIM_OCMODE_PWM1;
-  sConfigOC.Pulse = 50;
+  sConfigOC.Pulse = 0;
   sConfigOC.OCPolarity = TIM_OCPOLARITY_LOW;
   sConfigOC.OCFastMode = TIM_OCFAST_DISABLE;
   if (HAL_TIM_PWM_ConfigChannel(&htim4, &sConfigOC, TIM_CHANNEL_4) != HAL_OK)
