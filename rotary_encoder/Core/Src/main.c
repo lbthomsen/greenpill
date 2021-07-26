@@ -46,6 +46,8 @@ TIM_HandleTypeDef htim4;
 
 /* USER CODE BEGIN PV */
 
+uint32_t last_count = 0;
+
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -67,13 +69,19 @@ int _write(int file, char *ptr, int len) {
 
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim) {
 	if (htim->Instance == TIM3) {
-		asm("NOP");
+		if (TIM3->CNT > last_count) { // up
+			if (TIM4->CCR4 < TIM4->ARR) TIM4->CCR4++;
+		} else { // down
+			if (TIM4->CCR4 > 0) TIM4->CCR4--;
+		}
+		last_count = TIM3->CNT;
 	}
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	if (GPIO_Pin == BTN_Pin) {
-		asm("NOP");
+		TIM3->CNT = TIM3->ARR / 2;
+		TIM4->CCR4 = TIM4->ARR / 2; // Half on
 	}
 }
 
@@ -130,7 +138,7 @@ int main(void)
 
 	  now = HAL_GetTick();
 	  if (now - last_print >= 1000) {
-		  DBG("Encoder counter = %lu", TIM3->CNT);
+		  DBG("Encoder counter = %lu, PWM = %lu", TIM3->CNT, TIM4->CCR4);
 		  last_print = now;
 	  }
 
