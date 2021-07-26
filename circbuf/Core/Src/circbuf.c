@@ -2,7 +2,10 @@
  * circbuf.c
  *
  *  Created on: Jul 22, 2021
- *      Author: lth
+ *      Author: Lars Boegild Thomsen <lbthomsen@gmail.com>
+ *
+ *  Circular Buffer on internal flash
+ *
  */
 
 #include "stdbool.h"

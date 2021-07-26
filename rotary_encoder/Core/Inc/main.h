@@ -47,14 +47,10 @@ extern "C" {
 
 /* Exported macro ------------------------------------------------------------*/
 /* USER CODE BEGIN EM */
-#ifdef DEBUG
-#define DBG(...)    printf(__VA_ARGS__);\
-                            printf("\n");\
-                            HAL_Delay(1);
-#else
-#define DBG(...)
-#endif
+
 /* USER CODE END EM */
+
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
@@ -64,10 +60,17 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
-#define LED_Pin GPIO_PIN_13
-#define LED_GPIO_Port GPIOC
+#define BTN_Pin GPIO_PIN_5
+#define BTN_GPIO_Port GPIOA
+#define BTN_EXTI_IRQn EXTI9_5_IRQn
 /* USER CODE BEGIN Private defines */
-
+#ifdef DEBUG
+#define DBG(...)    printf(__VA_ARGS__);\
+                            printf("\n");\
+                            HAL_Delay(1);
+#else
+#define DBG(...)
+#endif
 /* USER CODE END Private defines */
 
 #ifdef __cplusplus
