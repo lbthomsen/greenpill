@@ -22,7 +22,7 @@ uint32_t last_record_number = 0;
 circular_buffer_record_t* get_record_address(uint32_t record_number) {
 	uint32_t page_number = record_number / records_per_page;
 	uint32_t record_number_on_page = record_number % records_per_page;
-	return (circular_buffer_record_t *)(&_storage_begin + page_number * FLASH_PAGE_SIZE + record_number_on_page * record_size);
+	return (circular_buffer_record_t *)((uint32_t)&_storage_begin + page_number * FLASH_PAGE_SIZE + record_number_on_page * record_size);
 }
 
 uint32_t find_first_record_number() {
@@ -59,6 +59,10 @@ uint32_t find_last_record_number() {
 
 	if (found) return record_number;
 	else return 0;
+}
+
+uint32_t first_last_count() {
+	return (first_record_number <= last_record_number) ? (last_record_number - first_record_number) : (last_record_number + number_of_records - first_record_number);
 }
 
 void circular_buffer_init() {
