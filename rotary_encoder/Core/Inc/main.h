@@ -63,6 +63,8 @@ void Error_Handler(void);
 #define BTN_Pin GPIO_PIN_5
 #define BTN_GPIO_Port GPIOA
 #define BTN_EXTI_IRQn EXTI9_5_IRQn
+#define LED_Pin GPIO_PIN_9
+#define LED_GPIO_Port GPIOB
 /* USER CODE BEGIN Private defines */
 #ifdef DEBUG
 #define DBG(...)    printf(__VA_ARGS__);\

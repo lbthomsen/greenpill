@@ -62,27 +62,32 @@ static void MX_TIM4_Init(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
+// Redirect printf to USB CDC
 int _write(int file, char *ptr, int len) {
 	CDC_Transmit_FS((uint8_t*) ptr, len);
 	return len;
 }
 
+// Update PWM duty cycle to match rotary encoder counter
 void update_counter() {
 	TIM4->CCR4 = TIM3->CNT;
 }
 
+// Callback every second pulse
 void HAL_TIM_IC_CaptureHalfCpltCallback(TIM_HandleTypeDef *htim) {
 	if (htim->Instance == TIM3) {
 		update_counter();
 	}
 }
 
+// Callback every second pulse
 void HAL_TIM_IC_CaptureCallback(TIM_HandleTypeDef *htim) {
 	if (htim->Instance == TIM3) {
 		update_counter();
 	}
 }
 
+// External interrupt on button press - reset both counter and pwm duty cycle to 0
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin) {
 	if (GPIO_Pin == BTN_Pin) {
 		TIM3->CNT = 0;
@@ -125,7 +130,10 @@ int main(void)
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
 
+  // Fire up PWM timer
   HAL_TIM_PWM_Start(&htim4, TIM_CHANNEL_4);
+
+  // Start rotary encoder timer
   HAL_TIM_Encoder_Start_IT(&htim3, TIM_CHANNEL_ALL);
 
   /* USER CODE END 2 */
