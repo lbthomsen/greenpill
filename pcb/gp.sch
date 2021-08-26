@@ -1540,4 +1540,59 @@ Text Notes 1850 3950 0    50   ~ 0
 F103 require external\nD+ pull up
 Text Notes 3950 6100 0    50   ~ 0
 Green: 3.3V\nBlue: PC13
+$Comp
+L Memory_Flash:W25Q32JVSS U3
+U 1 1 612C2A07
+P 7850 5800
+F 0 "U3" H 7500 6150 50  0000 C CNN
+F 1 "W25Q32JVSS" H 8200 6150 50  0000 C CNN
+F 2 "Package_SO:SOIC-8_5.23x5.23mm_P1.27mm" H 7850 5800 50  0001 C CNN
+F 3 "http://www.winbond.com/resource-files/w25q32jv%20revg%2003272018%20plus.pdf" H 7850 5800 50  0001 C CNN
+	1    7850 5800
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0104
+U 1 1 612C426A
+P 7850 6300
+F 0 "#PWR0104" H 7850 6050 50  0001 C CNN
+F 1 "GND" H 7855 6127 50  0000 C CNN
+F 2 "" H 7850 6300 50  0001 C CNN
+F 3 "" H 7850 6300 50  0001 C CNN
+	1    7850 6300
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR0105
+U 1 1 612C57A4
+P 7850 5300
+F 0 "#PWR0105" H 7850 5150 50  0001 C CNN
+F 1 "+3.3V" H 7865 5473 50  0000 C CNN
+F 2 "" H 7850 5300 50  0001 C CNN
+F 3 "" H 7850 5300 50  0001 C CNN
+	1    7850 5300
+	1    0    0    -1  
+$EndComp
+Text GLabel 7250 5700 0    50   Input ~ 0
+A15
+Text GLabel 7250 5900 0    50   Input ~ 0
+B3
+Text GLabel 8450 5600 2    50   Input ~ 0
+B5
+Text GLabel 8450 5700 2    50   Input ~ 0
+B4
+Wire Wire Line
+	7350 5700 7250 5700
+Wire Wire Line
+	7250 5900 7350 5900
+Wire Wire Line
+	7850 5300 7850 5400
+Wire Wire Line
+	7850 6200 7850 6300
+Wire Wire Line
+	8450 5600 8350 5600
+Wire Wire Line
+	8350 5700 8450 5700
+NoConn ~ 8350 5900
+NoConn ~ 8350 6000
 $EndSCHEMATC
