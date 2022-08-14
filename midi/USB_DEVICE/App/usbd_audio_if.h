@@ -1,49 +1,48 @@
 /* USER CODE BEGIN Header */
 /**
   ******************************************************************************
-  * @file           : usbd_dfu_if.h
-  * @brief          : Header for usbd_dfu_if.c file.
+  * @file           : usbd_audio_if.h
+  * @version        : v2.0_Cube
+  * @brief          : Header for usbd_audio_if.c file.
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2022 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
 /* USER CODE END Header */
-
 /* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __USBD_DFU_IF_H__
-#define __USBD_DFU_IF_H__
+#ifndef __USBD_AUDIO_IF_H__
+#define __USBD_AUDIO_IF_H__
 
 #ifdef __cplusplus
  extern "C" {
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "usbd_dfu.h"
+#include "usbd_audio.h"
 
 /* USER CODE BEGIN INCLUDE */
 
 /* USER CODE END INCLUDE */
 
-/** @addtogroup STM32_USB_DEVICE_LIBRARY
+/** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
   * @brief For Usb device.
   * @{
   */
 
-/** @defgroup USBD_MEDIA USBD_MEDIA
-  * @brief Header file for the usbd_dfu_if.c file.
+/** @defgroup USBD_AUDIO_IF USBD_AUDIO_IF
+  * @brief Usb audio interface device module.
   * @{
   */
 
-/** @defgroup USBD_MEDIA_Exported_Defines USBD_MEDIA_Exported_Defines
+/** @defgroup USBD_AUDIO_IF_Exported_Defines USBD_AUDIO_IF_Exported_Defines
   * @brief Defines.
   * @{
   */
@@ -56,7 +55,7 @@
   * @}
   */
 
-/** @defgroup USBD_MEDIA_Exported_Types USBD_MEDIA_Exported_Types
+/** @defgroup USBD_AUDIO_IF_Exported_Types USBD_AUDIO_IF_Exported_Types
   * @brief Types.
   * @{
   */
@@ -69,7 +68,7 @@
   * @}
   */
 
-/** @defgroup USBD_MEDIA_Exported_Macros USBD_MEDIA_Exported_Macros
+/** @defgroup USBD_AUDIO_IF_Exported_Macros USBD_AUDIO_IF_Exported_Macros
   * @brief Aliases.
   * @{
   */
@@ -82,13 +81,13 @@
   * @}
   */
 
-/** @defgroup USBD_MEDIA_Exported_Variables USBD_MEDIA_Exported_Variables
+/** @defgroup USBD_AUDIO_IF_Exported_Variables USBD_AUDIO_IF_Exported_Variables
   * @brief Public variables.
   * @{
   */
 
-/** MEDIA Interface callback. */
-extern USBD_DFU_MediaTypeDef USBD_DFU_fops_FS;
+/** AUDIO_IF Interface callback. */
+extern USBD_AUDIO_ItfTypeDef USBD_AUDIO_fops_FS;
 
 /* USER CODE BEGIN EXPORTED_VARIABLES */
 
@@ -98,10 +97,22 @@ extern USBD_DFU_MediaTypeDef USBD_DFU_fops_FS;
   * @}
   */
 
-/** @defgroup USBD_MEDIA_Exported_FunctionsPrototype USBD_MEDIA_Exported_FunctionsPrototype
+/** @defgroup USBD_AUDIO_IF_Exported_FunctionsPrototype USBD_AUDIO_IF_Exported_FunctionsPrototype
   * @brief Public functions declaration.
   * @{
   */
+
+/**
+  * @brief  Manages the DMA full transfer complete event.
+  * @retval None
+  */
+void TransferComplete_CallBack_FS(void);
+
+/**
+  * @brief  Manages the DMA half transfer complete event.
+  * @retval None
+  */
+void HalfTransfer_CallBack_FS(void);
 
 /* USER CODE BEGIN EXPORTED_FUNCTIONS */
 
@@ -123,5 +134,4 @@ extern USBD_DFU_MediaTypeDef USBD_DFU_fops_FS;
 }
 #endif
 
-#endif /* __USBD_DFU_IF_H__ */
-
+#endif /* __USBD_AUDIO_IF_H__ */

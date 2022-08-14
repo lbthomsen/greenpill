@@ -7,13 +7,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2022 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -66,10 +65,10 @@
 #define USBD_VID     1155
 #define USBD_LANGID_STRING     1033
 #define USBD_MANUFACTURER_STRING     "STMicroelectronics"
-#define USBD_PID_FS     57105
-#define USBD_PRODUCT_STRING_FS     "STM32 DownLoad Firmware Update"
-#define USBD_CONFIGURATION_STRING_FS     "DFU Config"
-#define USBD_INTERFACE_STRING_FS     "DFU Interface"
+#define USBD_PID_FS     22336
+#define USBD_PRODUCT_STRING_FS     "STM32 Audio Class"
+#define USBD_CONFIGURATION_STRING_FS     "AUDIO Config"
+#define USBD_INTERFACE_STRING_FS     "AUDIO Interface"
 
 /* USER CODE BEGIN PRIVATE_DEFINES */
 

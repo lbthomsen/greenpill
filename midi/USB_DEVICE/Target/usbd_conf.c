@@ -7,13 +7,12 @@
   ******************************************************************************
   * @attention
   *
-  * <h2><center>&copy; Copyright (c) 2020 STMicroelectronics.
-  * All rights reserved.</center></h2>
+  * Copyright (c) 2022 STMicroelectronics.
+  * All rights reserved.
   *
-  * This software component is licensed by ST under Ultimate Liberty license
-  * SLA0044, the "License"; You may not use this file except in compliance with
-  * the License. You may obtain a copy of the License at:
-  *                             www.st.com/SLA0044
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
   *
   ******************************************************************************
   */
@@ -24,7 +23,7 @@
 #include "stm32f1xx_hal.h"
 #include "usbd_def.h"
 #include "usbd_core.h"
-#include "usbd_dfu.h"
+#include "usbd_audio.h"
 
 /* USER CODE BEGIN Includes */
 
@@ -585,7 +584,18 @@ void USBD_LL_Delay(uint32_t Delay)
   */
 void *USBD_static_malloc(uint32_t size)
 {
-  static uint32_t mem[(sizeof(USBD_DFU_HandleTypeDef)/4)+1];/* On 32-bit boundary */
+  /* static uint8_t mem[sizeof(USBD_AUDIO_HandleTypeDef)]; */
+  /* USER CODE BEGIN 4 */
+  /**
+  * To compute the request size you must use the formula:
+    AUDIO_OUT_PACKET = (USBD_AUDIO_FREQ * 2 * 2) /1000)
+    AUDIO_TOTAL_BUF_SIZE = AUDIO_OUT_PACKET * AUDIO_OUT_PACKET_NUM with
+	Number of sub-packets in the audio transfer buffer. You can modify this value but always make sure
+    that it is an even number and higher than 3
+	AUDIO_OUT_PACKET_NUM = 80
+  */
+  static uint8_t mem[512];
+  /* USER CODE END 4 */
   return mem;
 }
 
