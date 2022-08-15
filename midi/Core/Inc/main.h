@@ -60,8 +60,8 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 /* USER CODE BEGIN Private defines */
 
-#define MIDI_IN_PORTS_NUM   0x01 // Specify input ports number of your device
-#define MIDI_OUT_PORTS_NUM  0x03 // Specify output ports number of your device
+#define MIDI_IN_PORTS_NUM   0x00 // Specify input ports number of your device
+#define MIDI_OUT_PORTS_NUM  0x08 // Specify output ports number of your device
 
 #ifdef DEBUG
 #define DBG(...)    printf(__VA_ARGS__);\
