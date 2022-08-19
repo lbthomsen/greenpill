@@ -20,12 +20,10 @@
 
 /* Includes ------------------------------------------------------------------*/
 
-#include "usbd_conf.h"
 #include "usb_device.h"
 #include "usbd_core.h"
 #include "usbd_desc.h"
-//#include "usbd_hid.h"
-#include "usbd_midi.h"
+#include "usbd_hid.h"
 
 /* USER CODE BEGIN Includes */
 
@@ -43,7 +41,7 @@
 
 /* USB Device Core handle declaration. */
 USBD_HandleTypeDef hUsbDeviceFS;
-extern PCD_HandleTypeDef hpcd_USB_FS;
+
 /*
  * -- Insert your variables declaration here --
  */
@@ -66,30 +64,6 @@ void MX_USB_DEVICE_Init(void)
 {
   /* USER CODE BEGIN USB_DEVICE_Init_PreTreatment */
 
-	/*
-	 * Force host to re-enumerate device
-	 */
-	GPIO_InitTypeDef GPIO_InitStruct = { 0 };              // All zeroed out
-	GPIO_InitStruct.Pin = GPIO_PIN_12;                     // Hardcoding this - PA12 is D+
-	GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;            // Push-pull mode
-	GPIO_InitStruct.Pull = GPIO_PULLDOWN;                  // Resetting so pull low
-	GPIO_InitStruct.Speed = GPIO_SPEED_HIGH;               // Really shouldn't matter in this case
-	HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);                // Initialize with above settings
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, GPIO_PIN_RESET); // Yank low
-	HAL_Delay(50);                                         // Enough time for host to disconnect device
-	HAL_GPIO_WritePin(GPIOA, GPIO_PIN_12, GPIO_PIN_SET);   // Back high - so host will enumerate
-
-
-	  hpcd_USB_FS.Instance = USB;
-	  hpcd_USB_FS.Init.dev_endpoints = 8;
-	  hpcd_USB_FS.Init.speed = PCD_SPEED_FULL;
-	  hpcd_USB_FS.Init.low_power_enable = DISABLE;
-	  hpcd_USB_FS.Init.lpm_enable = DISABLE;
-	  hpcd_USB_FS.Init.battery_charging_enable = DISABLE;
-	  if (HAL_PCD_Init(&hpcd_USB_FS) != HAL_OK)
-	  {
-	    Error_Handler();
-	  }
   /* USER CODE END USB_DEVICE_Init_PreTreatment */
 
   /* Init Device Library, add supported class and start the library. */
@@ -97,7 +71,7 @@ void MX_USB_DEVICE_Init(void)
   {
     Error_Handler();
   }
-  if (USBD_RegisterClass(&hUsbDeviceFS, &USBD_MIDI) != USBD_OK)
+  if (USBD_RegisterClass(&hUsbDeviceFS, &USBD_HID) != USBD_OK)
   {
     Error_Handler();
   }
