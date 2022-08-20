@@ -61,6 +61,9 @@ void Error_Handler(void);
 #define LED_GPIO_Port GPIOC
 /* USER CODE BEGIN Private defines */
 
+#define MIDI_OUT_PORTS_NUM 0
+#define MIDI_IN_PORTS_NUM 2
+
 #ifdef DEBUG
 #define DBG(...)    printf(__VA_ARGS__);\
                     printf("\n");

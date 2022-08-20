@@ -74,6 +74,28 @@ int _write(int fd, char *ptr, int len) {
     return -1;
 }
 
+void USBD_MIDI_DataInHandler(uint8_t *usb_rx_buffer, uint8_t usb_rx_buffer_length) {
+
+    uint8_t wire;
+    uint8_t message;
+    uint8_t channel;
+    uint8_t messageByte1;
+    uint8_t messageByte2;
+
+    while (usb_rx_buffer_length && *usb_rx_buffer != 0x00) {
+        wire = usb_rx_buffer[0] >> 4;
+        message = usb_rx_buffer[1] >> 4;
+        channel = usb_rx_buffer[1] & 0x0F;
+        messageByte1 = usb_rx_buffer[2];
+        messageByte2 = usb_rx_buffer[3];
+
+        DBG("Got message wire = %d message = %d channel = %d byte1 = %d byte2 = %d", wire, message, channel, messageByte1, messageByte2);
+
+        usb_rx_buffer += 4;
+        usb_rx_buffer_length -= 4;
+    }
+}
+
 /* USER CODE END 0 */
 
 /**
