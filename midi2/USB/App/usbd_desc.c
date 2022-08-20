@@ -64,9 +64,9 @@
 
 #define USBD_VID     1155
 #define USBD_LANGID_STRING     1033
-#define USBD_MANUFACTURER_STRING     "Lars Boegild Thomsen"
+#define USBD_MANUFACTURER_STRING     "Awesome Audio Apparatus"
 #define USBD_PID_FS     22315
-#define USBD_PRODUCT_STRING_FS     "MIDI"
+#define USBD_PRODUCT_STRING_FS     "MIDItio"
 #define USBD_CONFIGURATION_STRING_FS     "HID Config"
 #define USBD_INTERFACE_STRING_FS     "HID Interface"
 

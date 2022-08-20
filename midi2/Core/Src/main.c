@@ -131,7 +131,7 @@ int main(void)
 
     MX_USB_DEVICE_Init();
 
-    DBG("Starting");
+    DBG("\n\n----------------\nStarting MIDItio");
 
   /* USER CODE END 2 */
 
@@ -149,10 +149,10 @@ int main(void)
             last_blink = now;
         }
 
-        if (now - last_tick >= 1000) {
-            DBG("Tick %lu", now / 100);
-            last_tick = now;
-        }
+//        if (now - last_tick >= 1000) {
+//            DBG("Tick %lu", now / 100);
+//            last_tick = now;
+//        }
 
     /* USER CODE END WHILE */
 
