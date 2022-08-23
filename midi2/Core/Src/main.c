@@ -138,7 +138,7 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 
-    uint32_t now = 0, last_blink = 0, last_tick = 0;
+    uint32_t now = 0, last_blink = 0;
 
     while (1) {
 
@@ -148,11 +148,6 @@ int main(void)
             HAL_GPIO_TogglePin(LED_GPIO_Port, LED_Pin);
             last_blink = now;
         }
-
-//        if (now - last_tick >= 1000) {
-//            DBG("Tick %lu", now / 100);
-//            last_tick = now;
-//        }
 
     /* USER CODE END WHILE */
 
@@ -191,7 +186,7 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
-  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV2;
   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
 
