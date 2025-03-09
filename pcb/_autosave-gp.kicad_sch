@@ -6,7 +6,7 @@
 	(paper "A4")
 	(title_block
 		(title "Green Pill")
-		(rev "d")
+		(rev "e")
 		(company "Lars Boegild Thomsen")
 		(comment 1 "STM32 Development Board")
 		(comment 2 "lbthomsen@gmail.com")
