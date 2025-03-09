@@ -1,5 +1,4 @@
 (fp_lib_table
-  (lib (name greenpill)(type KiCad)(uri ${KIPRJMOD}/greenpill.pretty)(options "")(descr ""))
-  (lib (name lifeline)(type KiCad)(uri /home/lth/src/lifeline/pcb/lifeline.pretty)(options "")(descr ""))
-  (lib (name stm32dev)(type KiCad)(uri /home/lth/src/stm32dev/pcb/stm32dev.pretty)(options "")(descr ""))
+  (version 7)
+  (lib (name "greenpill")(type "KiCad")(uri "${KIPRJMOD}/greenpill.pretty")(options "")(descr ""))
 )

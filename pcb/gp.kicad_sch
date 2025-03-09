@@ -14034,7 +14034,7 @@
 				)
 			)
 		)
-		(property "Value" "W25Q32JVSS"
+		(property "Value" "W25Q128JVSIQ"
 			(at 154.94 149.86 0)
 			(effects
 				(font
@@ -14042,7 +14042,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Package_SO:SOIC-8_5.23x5.23mm_P1.27mm"
+		(property "Footprint" "Package_SO:SOIC-8_5.3x5.3mm_P1.27mm"
 			(at 146.05 158.75 0)
 			(effects
 				(font
@@ -14066,6 +14066,15 @@
 				(font
 					(size 1.27 1.27)
 				)
+			)
+		)
+		(property "LCSC" "C97521"
+			(at 146.05 158.75 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
 			)
 		)
 		(pin "1"
