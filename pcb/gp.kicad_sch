@@ -9114,7 +9114,7 @@
 				(justify right)
 			)
 		)
-		(property "Value" "GRE"
+		(property "Value" "WHI"
 			(at 81.28 157.48 90)
 			(effects
 				(font
@@ -9149,7 +9149,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C72043"
+		(property "LCSC" "C2290"
 			(at 77.47 154.94 90)
 			(effects
 				(font
@@ -10825,7 +10825,7 @@
 				)
 			)
 		)
-		(property "LCSC" "C72041"
+		(property "LCSC" "C2288"
 			(at 86.36 154.94 90)
 			(effects
 				(font
