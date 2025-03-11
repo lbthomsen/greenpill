@@ -93,7 +93,11 @@
           ""
         ],
         [
-          "silk_over_copper|168962344|106426068|faef20e2-5937-47e6-88db-1299e0a3e688|00000000-0000-0000-0000-000000000000",
+          "silk_overlap|156915295|105410000|00000000-0000-0000-0000-0000605cd011|ae118aca-ec60-4427-b33a-84f4a5eb92f8",
+          ""
+        ],
+        [
+          "silk_overlap|156953390|104832142|00000000-0000-0000-0000-0000605cd011|44d8e860-5492-4ccf-b078-3ea71f3ab93c",
           ""
         ],
         [
@@ -106,10 +110,6 @@
         ],
         [
           "silk_overlap|188639524|101162295|b80fe549-3723-48af-875c-160469ae5bb6|fd47b254-dc8a-46b5-a40b-35047bfbd202",
-          ""
-        ],
-        [
-          "silk_overlap|192040000|106000475|2ff3b3b6-0ffa-4ef8-9a73-68368f8f656d|c4d96e47-3f27-4bba-b702-f44c91086ea7",
           ""
         ]
       ],
@@ -701,7 +701,7 @@
       "workbook_filename": ""
     },
     "page_layout_descr_file": "",
-    "plot_directory": "gp_c/",
+    "plot_directory": "",
     "space_save_all_events": true,
     "spice_adjust_passive_values": false,
     "spice_current_sheet_as_root": false,
